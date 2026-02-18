@@ -1,4 +1,4 @@
---SQLQuery1-CREATE Students branch.sql
+п»ї--SQLQuery1-CREATE Students branch.sql
 
 USE PV_521_DDL;
 
@@ -12,9 +12,9 @@ CREATE TABLE Groups
 (
 group_id	INT			PRIMARY KEY,
 group_name	NVARCHAR(24)	NOT NULL,
-direction	TINYINT			NOT NULL	--описание поля
+direction	TINYINT			NOT NULL	--РѕРїРёСЃР°РЅРёРµ РїРѕР»СЏ
 CONSTRAINT	FK_Groups_Direction FOREIGN KEY REFERENCES Directions(direction_id)
--- CONSTRAINT	FK_Имя_ВнешнегоКлюча FOREIGN KEY REFERENCES Таблица(первичный_ключ_внешней_таблицы)
+-- CONSTRAINT	FK_РРјСЏ_Р’РЅРµС€РЅРµРіРѕРљР»СЋС‡Р° FOREIGN KEY REFERENCES РўР°Р±Р»РёС†Р°(РїРµСЂРІРёС‡РЅС‹Р№_РєР»СЋС‡_РІРЅРµС€РЅРµР№_С‚Р°Р±Р»РёС†С‹)
 );
 
 CREATE TABLE Students
