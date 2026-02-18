@@ -1,7 +1,7 @@
---SQLQuery1-SELECT Directions.sql
+п»ї--SQLQuery1-SELECT Directions.sql
 
 USE PV_521;
 
 SELECT * FROM Directions;
 
---	* все поля
+--	* РІСЃРµ РїРѕР»СЏ
