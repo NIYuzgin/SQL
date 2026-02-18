@@ -1,15 +1,15 @@
---SQLQuery3-SELECT Teachers.sql
+п»ї--SQLQuery3-SELECT Teachers.sql
 
 SELECT
-		[Преподаватель]		=	FORMATMESSAGE(N'%s %s %s', last_name, first_name, middle_name)
-		,[Дата рождения]	=	birth_date
-		,[Возраст]			=	CAST(DATEDIFF(DAY, birth_date, GETDATE())/365.25	AS	TINYINT)
+		[РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ]		=	FORMATMESSAGE(N'%s %s %s', last_name, first_name, middle_name)
+		,[Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ]	=	birth_date
+		,[Р’РѕР·СЂР°СЃС‚]			=	CAST(DATEDIFF(DAY, birth_date, GETDATE())/365.25	AS	TINYINT)
 FROM	Teachers
 WHERE		CAST(DATEDIFF(DAY, birth_date, GETDATE())/365.25	AS	TINYINT)	BETWEEN 38 AND	44
-ORDER BY	[Возраст]	ASC
+ORDER BY	[Р’РѕР·СЂР°СЃС‚]	ASC
 
--- ASC - Ascinding (По возрастанию)
--- DESC - Descending (По убыванию)
+-- ASC - Ascinding (РџРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ)
+-- DESC - Descending (РџРѕ СѓР±С‹РІР°РЅРёСЋ)
 
 ;
 
