@@ -1,13 +1,13 @@
---SQLQuery1-INSERT Shedule.sql
+п»ї--SQLQuery1-INSERT Shedule.sql
 
 USE PV_521_Import;
-SET DATEFIRST 1;		--Для правильной интерпретации дней недели (Пн-1, Вт-2, ..., Вс-7)
+SET DATEFIRST 1;		--Р”Р»СЏ РїСЂР°РІРёР»СЊРЅРѕР№ РёРЅС‚РµСЂРїСЂРµС‚Р°С†РёРё РґРЅРµР№ РЅРµРґРµР»Рё (РџРЅ-1, Р’С‚-2, ..., Р’СЃ-7)
 
---Объявляем переменные:
+--РћР±СЉСЏРІР»СЏРµРј РїРµСЂРµРјРµРЅРЅС‹Рµ:
 DECLARE @group		AS INT		=	(SELECT group_id		FROM Groups			WHERE group_name=N'PV_521');
 DECLARE @discipline AS SMALLINT =	(SELECT discipline_id	FROM Disciplines	WHERE discipline_name LIKE N'%MS SQL%');
 DECLARE @number_of_lessons AS TINYINT =	(SELECT number_of_lessons	FROM Disciplines	WHERE discipline_id=@discipline);
-DECLARE @teacher	AS INT		=	(SELECT teacher_id		FROM Teachers		WHERE first_name = N'Олег');
+DECLARE @teacher	AS INT		=	(SELECT teacher_id		FROM Teachers		WHERE first_name = N'РћР»РµРі');
 DECLARE @start_date	AS DATE		=	N'2025-12-24';
 DECLARE @start_time	AS TIME		=	(SELECT start_time		FROM Groups			WHERE group_id = @group);
 
@@ -20,7 +20,7 @@ PRINT(@start_date);
 PRINT(@start_time);
 
 
--- В цикле перебираем занятия по номеру, определяем дату и время каждого занятия
+-- Р’ С†РёРєР»Рµ РїРµСЂРµР±РёСЂР°РµРј Р·Р°РЅСЏС‚РёСЏ РїРѕ РЅРѕРјРµСЂСѓ, РѕРїСЂРµРґРµР»СЏРµРј РґР°С‚Сѓ Рё РІСЂРµРјСЏ РєР°Р¶РґРѕРіРѕ Р·Р°РЅСЏС‚РёСЏ
 DECLARE @date	AS DATE = @start_date;
 DECLARE @lesson_number	AS TINYINT = 1;
 DECLARE @time	AS	TIME	=	@start_time;
