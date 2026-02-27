@@ -27,20 +27,26 @@ DECLARE @time	AS	TIME	=	@start_time;
 WHILE @lesson_number < @number_of_lessons
 BEGIN
 		SET @time	=	@start_time;
-		PRINT(FORMATMESSAGE(N'%i  %s  %s  %s', @lesson_number,CAST(@date AS VARCHAR(24)),DATENAME(WEEKDAY,@date), CAST(@time  AS VARCHAR(24))));
-		IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date]=@date AND [time]=@time AND [group] = @group)
-		INSERT Schedule	VALUES (@group, @discipline, @teacher, @date, @time, IIF(@date<GETDATE(),1,0));
+		--PRINT(FORMATMESSAGE(N'%i  %s  %s  %s', @lesson_number,CAST(@date AS VARCHAR(24)),DATENAME(WEEKDAY,@date), CAST(@time  AS VARCHAR(24))));
+		--IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date]=@date AND [time]=@time AND [group] = @group)
+		--	INSERT Schedule	VALUES (@group, @discipline, @teacher, @date, @time, IIF(@date<GETDATE(),1,0));
+		--SET @lesson_number = @lesson_number +1;
+		--SET @time = DATEADD(MINUTE, 95, @start_time);
+
+		EXEC		sp_InsertLesson @group, @discipline, @teacher, @date, @time		OUTPUT, @lesson_number	OUTPUT
+
+		--PRINT(FORMATMESSAGE(N'%i  %s  %s  %s', @lesson_number,CAST(@date AS VARCHAR(24)),DATENAME(WEEKDAY,@date), CAST(@time  AS VARCHAR(24))));
+		--IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date]=@date AND [time]=@time AND [group] = @group)
+		--	INSERT Schedule	VALUES (@group, @discipline, @teacher, @date, @time, IIF(@date<GETDATE(),1,0));
+		--SET @lesson_number = @lesson_number +1;
+
+		EXEC		sp_InsertLesson @group, @discipline, @teacher, @date, @time		OUTPUT, @lesson_number	OUTPUT
+
 		
-		SET @lesson_number = @lesson_number +1;
-		SET @time = DATEADD(MINUTE, 95, @start_time);
-
-		PRINT(FORMATMESSAGE(N'%i  %s  %s  %s', @lesson_number,CAST(@date AS VARCHAR(24)),DATENAME(WEEKDAY,@date), CAST(@time  AS VARCHAR(24))));
-		INSERT Schedule	VALUES (@group, @discipline, @teacher, @date, @time, IIF(@date<GETDATE(),1,0));
-		SET @lesson_number = @lesson_number +1;
-
 		DECLARE @day	AS	TINYINT = DATEPART(WEEKDAY,@date);
 		--PRINT(@day);
 		SET @date	=	DATEADD(DAY,IIF(@day = 5, 3, 2), @date);
 END
 
+--PRINT(@time);
 
